@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+  nginx:
+    image: yinsiyu/yugod-frontend:v1.0
+    container_name: yugod
+    ports:
+      - "80:80"
+    restart: always
