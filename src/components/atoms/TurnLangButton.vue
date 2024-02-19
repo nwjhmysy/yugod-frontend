@@ -21,7 +21,7 @@ const updateLocale = inject<(arg0: LOCALES) => void>('updateLocale')
       }
     "
   >
-    切换语言
+    {{ lang === LOCALES.ZH ? '切换语言' : '切り替える' }}
   </div>
 </template>
 
