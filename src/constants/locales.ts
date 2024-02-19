@@ -1,5 +1,5 @@
 export enum LOCALES {
   ZH = 'zh',
-  JA = 'ja',
+  JA = 'ja'
 }
-export const DefaultLang = LOCALES.ZH;
+export const DefaultLang = LOCALES.ZH
