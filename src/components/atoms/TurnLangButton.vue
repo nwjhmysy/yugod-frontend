@@ -1,21 +1,22 @@
 <script setup lang="ts">
-import { type Ref, inject } from 'vue'
 import { LOCALES } from '@/constants'
+import { useLangStore } from '@/stores/lang'
+import { storeToRefs } from 'pinia'
 
-const lang = inject<Ref<LOCALES>>('lang')
-const updateLocale = inject<(arg0: LOCALES) => void>('updateLocale')
+const { lang } = storeToRefs(useLangStore())
+const { setLangZh, setLangJa } = useLangStore()
 </script>
 <template>
   <div
-    class="w-12 h-12 text-center fixed top-32 right-10 bg-cyan-200 cursor-pointer"
+    class="w-12 h-12 text-center fixed top-32 right-[50%] translate-x-[50%] bg-cyan-200 cursor-pointer"
     @click="
       () => {
         if (lang === LOCALES.JA) {
-          updateLocale && updateLocale(LOCALES.ZH)
+          setLangZh()
           return
         }
         if (lang === LOCALES.ZH) {
-          updateLocale && updateLocale(LOCALES.JA)
+          setLangJa()
           return
         }
       }

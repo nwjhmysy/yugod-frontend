@@ -1,35 +1,33 @@
 <script setup lang="ts">
-import type { LOCALES } from '@/constants'
-import { browserLocale, useLocale } from '@/hooks/useLocale'
-import { provide, watch } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
 import TurnLangButton from '../atoms/TurnLangButton.vue'
+import { useLangStore } from '@/stores/lang'
 
-const router = useRouter()
-const route = useRoute()
-// 切换路由时,更新 lang
-const { lang, updateLocale } = useLocale(
-  (route.params['lang'] as LOCALES | undefined) || browserLocale()
-)
-
-// 改变语言 lang 时,改变路由
-watch(lang, (val) => {
-  router.push({ params: { lang: val } })
-})
-
-provide('lang', lang)
-provide('updateLocale', updateLocale)
+const { moveTo } = useLangStore()
 </script>
 
 <template>
   <!-- nav -->
   <div>
     <nav>
-      <button class="p-2 bg-cyan-700">
-        <router-link to="/"> home </router-link>
+      <button
+        class="p-2 bg-cyan-700"
+        @click="
+          () => {
+            moveTo('/')
+          }
+        "
+      >
+        home
       </button>
-      <button class="p-2 bg-fuchsia-600">
-        <router-link to="/about"> about </router-link>
+      <button
+        class="p-2 bg-fuchsia-600"
+        @click="
+          () => {
+            moveTo('/about')
+          }
+        "
+      >
+        about
       </button>
     </nav>
   </div>
