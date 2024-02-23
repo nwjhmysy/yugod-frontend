@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import TurnLangButton from '../atoms/TurnLangButton.vue'
+import useIsSP from '@/hooks/useIsSP'
+import TurnLangButton from '@/components/atoms/TurnLangButton.vue'
 import { useLangStore } from '@/stores/lang'
 
 const { moveTo } = useLangStore()
+const { isSP } = useIsSP()
 </script>
 
 <template>
   <!-- nav -->
-  <div>
+  <div class="w-full">
     <nav>
       <button
         class="p-2 bg-cyan-700"
@@ -31,12 +33,13 @@ const { moveTo } = useLangStore()
       </button>
     </nav>
   </div>
-  <!-- body -->
+  <!-- view -->
   <div>
     <router-view />
   </div>
   <!-- footer -->
-  <div></div>
+  <div>footer</div>
+  <p>{{ isSP ? 'aaaaa' : 'dssadas' }}</p>
   <TurnLangButton />
 </template>
 
