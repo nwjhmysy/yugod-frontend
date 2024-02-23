@@ -6,7 +6,7 @@ import { storeToRefs } from 'pinia'
 import { useLangStore } from '@/stores/lang'
 
 const { lang } = storeToRefs(useLangStore())
-
+const { setLangZh, setLangJa } = useLangStore()
 const data = computed(() => {
   const key = lang?.value || LOCALES.ZH
   return HOME_VALUE[key]
@@ -14,7 +14,24 @@ const data = computed(() => {
 </script>
 
 <template>
-  <h2>{{ data.header }}</h2>
+  <button
+    class="p-4 bg-gray-500"
+    @click="
+      () => {
+        if (lang === LOCALES.JA) {
+          setLangZh()
+          return
+        }
+        if (lang === LOCALES.ZH) {
+          setLangJa()
+          return
+        }
+      }
+    "
+  >
+    切换语言
+  </button>
+  <h1>{{ data.header }}</h1>
   <br />
   <strong>{{ data.main.title }}</strong>
   <ul>
@@ -28,9 +45,10 @@ const data = computed(() => {
   </ul>
   <template v-for="(value, index) in data.content" :key="index">
     <br />
-    <p>
+    <p class="break-all break-words">
       <span>{{ value.descript }}</span>
       <a class="hover:text-orange-600" :href="value.link" target="_blank">{{ value.link }}</a>
     </p>
   </template>
+  <p v-for="index in 30" :key="index">cfedwv</p>
 </template>

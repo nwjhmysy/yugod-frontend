@@ -1,46 +1,25 @@
 <script setup lang="ts">
-import useIsSP from '@/hooks/useIsSP'
-import TurnLangButton from '@/components/atoms/TurnLangButton.vue'
-import { useLangStore } from '@/stores/lang'
+import Banner from '@/components/Banner.vue'
 
-const { moveTo } = useLangStore()
-const { isSP } = useIsSP()
 </script>
 
 <template>
   <!-- nav -->
-  <div class="w-full">
-    <nav>
-      <button
-        class="p-2 bg-cyan-700"
-        @click="
-          () => {
-            moveTo('/')
-          }
-        "
-      >
-        home
-      </button>
-      <button
-        class="p-2 bg-fuchsia-600"
-        @click="
-          () => {
-            moveTo('/about')
-          }
-        "
-      >
-        about
-      </button>
-    </nav>
+  <div
+    class="w-full min-w-[300px] min-h-[100vh] bg-gray-bg flex flex-col justify-between items-center"
+  >
+    <div class="w-full flex flex-col justify-start items-center">
+      <Banner />
+      <!-- view -->
+      <div class="box-border max-w-[660px] m-6 px-14 py-10 bg-white">
+        <router-view />
+      </div>
+    </div>
+    <!-- footer -->
+    <div class="w-full bg-black box-border px-14 py-4">
+      <span class="text-white">foot</span>
+    </div>
   </div>
-  <!-- view -->
-  <div>
-    <router-view />
-  </div>
-  <!-- footer -->
-  <div>footer</div>
-  <p>{{ isSP ? 'aaaaa' : 'dssadas' }}</p>
-  <TurnLangButton />
 </template>
 
 <style scoped></style>
