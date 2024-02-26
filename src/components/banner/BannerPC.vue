@@ -2,6 +2,9 @@
 import searchIcon from '@/assets/iamges/search_icon.svg'
 import rainLgog from '@/assets/iamges/rain_logo.svg'
 import { GithubOutlined } from '@ant-design/icons-vue'
+import { useLangStore } from '@/stores/lang'
+
+const { moveTo } = useLangStore()
 </script>
 <template>
   <div
@@ -13,10 +16,16 @@ import { GithubOutlined } from '@ant-design/icons-vue'
         <span class="whitespace-nowrap text-lg font-bold">YuGod</span>
       </div>
       <div class="w-full m-6 flex justify-start items-center cursor-pointer">
-        <div class="h-20 box-border px-4 hover:shadow-picker-panel bg-slate-200 flex items-center">
+        <div
+          class="h-20 box-border px-4 hover:shadow-picker-panel bg-slate-200 flex items-center"
+          @click="moveTo('')"
+        >
           nav1
         </div>
-        <div class="h-20 box-border px-4 hover:shadow-picker-panel bg-slate-200 flex items-center">
+        <div
+          class="h-20 box-border px-4 hover:shadow-picker-panel bg-slate-200 flex items-center"
+          @click="moveTo('/about')"
+        >
           nav2
         </div>
         <div class="h-20 box-border px-4 hover:shadow-picker-panel bg-slate-200 flex items-center">

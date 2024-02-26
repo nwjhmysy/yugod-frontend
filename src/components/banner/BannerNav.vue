@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref, type DefineProps } from 'vue'
-
 interface Props {
   isOpen: boolean
 }
