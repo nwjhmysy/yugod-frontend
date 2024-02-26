@@ -1,23 +1,20 @@
 <script setup lang="ts">
 import { getMD } from '@/service/index'
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue'
 import VditorPreview from 'vditor'
-
+import BlankContent from '@/components/atoms/BlankContent.vue'
 const md = ref('')
 const mdElement = ref<HTMLDivElement>()
-onMounted(async() => {
+onMounted(async () => {
   md.value = await getMD()
   if (mdElement.value && md.value) {
-
-    console.log(mdElement.value)
-    VditorPreview.preview(mdElement.value, md.value, {mode:'dark',})
+    VditorPreview.preview(mdElement.value, md.value, { mode: 'dark' })
   }
 })
 </script>
 <template>
   <div ref="mdElement" class="vditor-reset"></div>
+  <BlankContent class="w-full" v-if="!md" />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

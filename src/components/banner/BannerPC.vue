@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import searchIcon from '@/assets/iamges/search_icon.svg'
-import rainLgog from '@/assets/iamges/rain_logo.svg'
+import searchIcon from '@/assets/images/search_icon.svg'
+import rainLgog from '@/assets/images/rain_logo.svg'
 import { GithubOutlined } from '@ant-design/icons-vue'
 import { useLangStore } from '@/stores/lang'
 
