@@ -2,7 +2,7 @@ version: '3'
 
 services:
   nginx:
-    image: yinsiyu/yugod-frontend:v1.1
+    image: yinsiyu/yugod-frontend:v1.2
     container_name: yugod
     ports:
       - "443:443"
