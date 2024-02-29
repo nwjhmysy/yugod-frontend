@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { getMD } from '@/service/index'
 import { onMounted, ref } from 'vue'
 import VditorPreview from 'vditor'
 import BlankContent from '@/components/atoms/BlankContent.vue'
-const md = ref('')
+import { Configuration, MdApi } from '@/services';
+const md = ref<string>('')
 const mdElement = ref<HTMLDivElement>()
 onMounted(async () => {
-  md.value = await getMD()
+  const getMDApi = new MdApi(new Configuration(),'https://yugod.top/api')
+
+  const { data } = await getMDApi.getMarkDownByKey()
+
+  md.value = data
   if (mdElement.value && md.value) {
     VditorPreview.preview(mdElement.value, md.value, { mode: 'dark' })
   }

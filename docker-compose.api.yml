@@ -1,0 +1,21 @@
+version: '3'
+services:
+  openapi-generator-cli:
+    image: openapitools/openapi-generator-cli:v7.1.0
+    command:
+      [
+        'generate',
+        '-i',
+        './tmp/src/openapi.v3.yaml',
+        '-o',
+        'tmp/dist',
+        '-g',
+        'typescript-axios',
+        '--additional-properties=withSeparateModelsAndApi=true',
+        '--model-package=model',
+        '--api-package=api',
+        '--type-mappings=Date=string',
+      ]
+    volumes:
+      - ./api:/tmp/src
+      - ./src/services:/tmp/dist
