@@ -2,17 +2,24 @@
 import { onMounted, ref } from 'vue'
 import VditorPreview from 'vditor'
 import BlankContent from '@/components/atoms/BlankContent.vue'
-import { Configuration, MdApi } from '@/services';
+import { getMDApi } from '@/assets/ts/utils'
+import { useLoadingStore } from '@/stores/loading'
+
 const md = ref<string>('')
 const mdElement = ref<HTMLDivElement>()
+const { openLoading, closeLoading } = useLoadingStore()
+
 onMounted(async () => {
-  const getMDApi = new MdApi(new Configuration(),'https://yugod.top/api')
-
-  const { data } = await getMDApi.getMarkDownByKey()
-
-  md.value = data
-  if (mdElement.value && md.value) {
-    VditorPreview.preview(mdElement.value, md.value, { mode: 'dark' })
+  try {
+    const api = getMDApi()
+    openLoading()
+    const { data } = await api.getMarkDownByKey()
+    md.value = data
+    if (mdElement.value && md.value) {
+      await VditorPreview.preview(mdElement.value, md.value, { mode: 'dark' })
+    }
+  } finally {
+    closeLoading()
   }
 })
 </script>

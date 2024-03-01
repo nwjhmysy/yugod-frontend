@@ -17,7 +17,6 @@ export const useLangStore = defineStore('lang', () => {
       case 'ja':
         lang.value = LOCALES.JA
         break
-
       default:
         lang.value = browserLocale()
         break

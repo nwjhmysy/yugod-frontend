@@ -5,6 +5,7 @@ export interface HomeContent {
     list: string[]
   }
   content: {
+    id: number
     descript: string
     link: string
   }[]

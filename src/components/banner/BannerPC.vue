@@ -17,18 +17,20 @@ const { moveTo } = useLangStore()
       </div>
       <div class="w-full m-6 flex justify-start items-center cursor-pointer">
         <div
-          class="h-20 box-border px-4 hover:shadow-picker-panel bg-slate-200 flex items-center"
+          class="h-20 box-border px-4 hover:shadow-picker-panel hover:z-10 bg-slate-200 flex items-center"
           @click="moveTo('')"
         >
-          nav1
+          home
         </div>
         <div
-          class="h-20 box-border px-4 hover:shadow-picker-panel bg-slate-200 flex items-center"
+          class="h-20 box-border px-4 hover:shadow-picker-panel hover:z-10 bg-slate-200 flex items-center"
           @click="moveTo('/about')"
         >
-          nav2
+          markdown
         </div>
-        <div class="h-20 box-border px-4 hover:shadow-picker-panel bg-slate-200 flex items-center">
+        <div
+          class="h-20 box-border px-4 hover:shadow-picker-panel hover:z-10 bg-slate-200 flex items-center"
+        >
           nav3
         </div>
       </div>

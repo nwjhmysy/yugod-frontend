@@ -15,3 +15,8 @@
 .shadow-down {
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
+/* 强制英文断句并换行 */
+.break-all-words {
+  word-break: break-all;
+  overflow-wrap: break-word;
+}

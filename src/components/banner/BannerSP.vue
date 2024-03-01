@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import BannerNav from '@/components/banner/BannerNav.vue'
+import { useLangStore } from '@/stores/lang'
 import { ref } from 'vue'
-
+import { UnorderedListOutlined } from '@ant-design/icons-vue'
+const { moveTo } = useLangStore()
 const isNavOpen = ref(false)
 </script>
 
@@ -9,20 +11,26 @@ const isNavOpen = ref(false)
   <div
     class="w-full h-16 bg-zinc-100 box-border px-6 shadow-down flex justify-between items-center z-[100]"
   >
-    <div
-      class="cursor-pointer"
+    <UnorderedListOutlined
+      class="cursor-pointer text-[24px]"
       @click="
         () => {
           isNavOpen = !isNavOpen
         }
       "
-    >
-      菜单
-    </div>
+    />
     <div><span class="whitespace-nowrap text-lg font-bold">YuGod</span></div>
     <div>搜索</div>
   </div>
-  <BannerNav :is-open="isNavOpen" />
+  <BannerNav
+    :is-open="isNavOpen"
+    @move-to="
+      (path) => {
+        moveTo(path)
+        isNavOpen = false
+      }
+    "
+  />
   <div
     v-if="isNavOpen"
     @click="
