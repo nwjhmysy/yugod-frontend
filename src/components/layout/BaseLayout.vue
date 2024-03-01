@@ -17,8 +17,8 @@ const { isSP } = useIsSP(700)
       <!-- view -->
       <div
         :class="[
-          ' box-border m-6 px-14 py-10 bg-white',
-          isSP ? 'w-full max-w-[660px]' : 'w-[660px]'
+          ' box-border my-6 py-10 bg-white',
+          isSP ? 'w-full max-w-[660px] px-8' : 'w-[660px] px-12'
         ]"
       >
         <router-view />
