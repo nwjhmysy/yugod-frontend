@@ -35,7 +35,7 @@ export const useLangStore = defineStore('lang', () => {
   const setLangZh = () => {
     lang.value = LOCALES.ZH
   }
-
+  // 切换路由时使用 moveTo 方法
   const moveTo = (path?: string) => {
     if (path === route.path) return
     router.push({ path: '/' + lang.value + path })

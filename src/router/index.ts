@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory, type RouteLocationNormalizedLoaded } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
-import AboutView from '@/views/AboutView.vue'
+import StudyNoteView from '@/views/StudyNoteView.vue'
 import BaseLayoutVue from '@/components/layout/BaseLayout.vue'
 import { browserLocale } from '@/hooks/useLocale'
 import { nextTick } from 'vue'
 import { LOCALES } from '@/constants'
 import META_VALUE from '@/model/meta'
+import ShareGardenView from '@/views/ShareGardenView.vue'
 
 const getMeta = (route: RouteLocationNormalizedLoaded) => {
   const lang = (route.params.lang as LOCALES) || LOCALES.ZH
@@ -22,9 +23,14 @@ const routes = [
     component: HomeView
   },
   {
-    path: 'about',
+    path: 'about/:mdPath?',
     name: 'about',
-    component: AboutView
+    component: StudyNoteView
+  },
+  {
+    path: 'Share',
+    name: 'share',
+    component: ShareGardenView
   }
 ]
 

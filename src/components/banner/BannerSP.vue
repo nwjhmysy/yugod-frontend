@@ -1,10 +1,20 @@
 <script setup lang="ts">
 import BannerNav from '@/components/banner/BannerNav.vue'
 import { useLangStore } from '@/stores/lang'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { UnorderedListOutlined } from '@ant-design/icons-vue'
+import { storeToRefs } from 'pinia'
+import { LOCALES } from '@/constants'
+import NAVS from '@/model/nav'
+
 const { moveTo } = useLangStore()
 const isNavOpen = ref(false)
+const { lang } = storeToRefs(useLangStore())
+
+const data = computed(() => {
+  const key = lang?.value || LOCALES.ZH
+  return NAVS[key]
+})
 </script>
 
 <template>
@@ -23,6 +33,7 @@ const isNavOpen = ref(false)
     <div>搜索</div>
   </div>
   <BannerNav
+    :navs="data"
     :is-open="isNavOpen"
     @move-to="
       (path) => {

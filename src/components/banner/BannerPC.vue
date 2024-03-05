@@ -3,8 +3,18 @@ import searchIcon from '@/assets/images/search_icon.svg'
 import rainLgog from '@/assets/images/rain_logo.svg'
 import { GithubOutlined } from '@ant-design/icons-vue'
 import { useLangStore } from '@/stores/lang'
+import { storeToRefs } from 'pinia'
+import { computed } from 'vue'
+import { LOCALES } from '@/constants'
+import NAVS from '@/model/nav'
 
 const { moveTo } = useLangStore()
+const { lang } = storeToRefs(useLangStore())
+
+const data = computed(() => {
+  const key = lang?.value || LOCALES.ZH
+  return NAVS[key]
+})
 </script>
 <template>
   <div
@@ -17,21 +27,12 @@ const { moveTo } = useLangStore()
       </div>
       <div class="w-full m-6 flex justify-start items-center cursor-pointer">
         <div
-          class="h-20 box-border px-4 hover:shadow-picker-panel hover:z-10 bg-slate-200 flex items-center"
-          @click="moveTo('')"
+          v-for="nav in data"
+          :key="nav.id"
+          class="h-20 min-w-[80px] text-[#fff] box-border px-4 hover:shadow-picker-panel hover:z-10 bg-[#b7b7b7] flex items-center"
+          @click="moveTo(nav.navLink)"
         >
-          home
-        </div>
-        <div
-          class="h-20 box-border px-4 hover:shadow-picker-panel hover:z-10 bg-slate-200 flex items-center"
-          @click="moveTo('/about')"
-        >
-          markdown
-        </div>
-        <div
-          class="h-20 box-border px-4 hover:shadow-picker-panel hover:z-10 bg-slate-200 flex items-center"
-        >
-          nav3
+          {{ nav.navName }}
         </div>
       </div>
     </div>

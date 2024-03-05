@@ -21,6 +21,8 @@ import globalAxios from 'axios';
 import { DUMMY_BASE_URL, assertParamExists, setApiKeyToObject, setBasicAuthToObject, setBearerAuthToObject, setOAuthToObject, setSearchParams, serializeDataIfNeeded, toPathString, createRequestFunction } from '../common';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS,type RequestArgs, BaseAPI, RequiredError, operationServerMap } from '../base';
+// @ts-ignore
+import {type GetMDByPathResponse } from '../model';
 /**
  * MdApi - axios parameter creator
  * @export
@@ -29,10 +31,56 @@ export const MdApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} mdPath 文件路径
+         * @param {number} downloadCode 下载码
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMarkDownByKey: async (options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        downloadMDByCode: async (mdPath: string, downloadCode: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mdPath' is not null or undefined
+            assertParamExists('downloadMDByCode', 'mdPath', mdPath)
+            // verify required parameter 'downloadCode' is not null or undefined
+            assertParamExists('downloadMDByCode', 'downloadCode', downloadCode)
+            const localVarPath = `/md/download`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (mdPath !== undefined) {
+                localVarQueryParameter['md_path'] = mdPath;
+            }
+
+            if (downloadCode !== undefined) {
+                localVarQueryParameter['download_code'] = downloadCode;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * 
+         * @param {string} mdPath markdown文件路径
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMarkDownByPath: async (mdPath: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'mdPath' is not null or undefined
+            assertParamExists('getMarkDownByPath', 'mdPath', mdPath)
             const localVarPath = `/md`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -44,6 +92,10 @@ export const MdApiAxiosParamCreator = function (configuration?: Configuration) {
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (mdPath !== undefined) {
+                localVarQueryParameter['md_path'] = mdPath;
+            }
 
 
     
@@ -68,13 +120,27 @@ export const MdApiFp = function(configuration?: Configuration) {
     return {
         /**
          * 
+         * @param {string} mdPath 文件路径
+         * @param {number} downloadCode 下载码
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async getMarkDownByKey(options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.getMarkDownByKey(options);
+        async downloadMDByCode(mdPath: string, downloadCode: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.downloadMDByCode(mdPath, downloadCode, options);
             const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['MdApi.getMarkDownByKey']?.[index]?.url;
+            const operationBasePath = operationServerMap['MdApi.downloadMDByCode']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * 
+         * @param {string} mdPath markdown文件路径
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async getMarkDownByPath(mdPath: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<GetMDByPathResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.getMarkDownByPath(mdPath, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['MdApi.getMarkDownByPath']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
@@ -89,11 +155,22 @@ export const MdApiFactory = function (configuration?: Configuration, basePath?: 
     return {
         /**
          * 
+         * @param {string} mdPath 文件路径
+         * @param {number} downloadCode 下载码
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        getMarkDownByKey(options?: any): AxiosPromise<string> {
-            return localVarFp.getMarkDownByKey(options).then((request) => request(axios, basePath));
+        downloadMDByCode(mdPath: string, downloadCode: number, options?: any): AxiosPromise<File> {
+            return localVarFp.downloadMDByCode(mdPath, downloadCode, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * 
+         * @param {string} mdPath markdown文件路径
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        getMarkDownByPath(mdPath: string, options?: any): AxiosPromise<GetMDByPathResponse> {
+            return localVarFp.getMarkDownByPath(mdPath, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -107,12 +184,25 @@ export const MdApiFactory = function (configuration?: Configuration, basePath?: 
 export class MdApi extends BaseAPI {
     /**
      * 
+     * @param {string} mdPath 文件路径
+     * @param {number} downloadCode 下载码
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof MdApi
      */
-    public getMarkDownByKey(options?: AxiosRequestConfig) {
-        return MdApiFp(this.configuration).getMarkDownByKey(options).then((request) => request(this.axios, this.basePath));
+    public downloadMDByCode(mdPath: string, downloadCode: number, options?: AxiosRequestConfig) {
+        return MdApiFp(this.configuration).downloadMDByCode(mdPath, downloadCode, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {string} mdPath markdown文件路径
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof MdApi
+     */
+    public getMarkDownByPath(mdPath: string, options?: AxiosRequestConfig) {
+        return MdApiFp(this.configuration).getMarkDownByPath(mdPath, options).then((request) => request(this.axios, this.basePath));
     }
 }
 

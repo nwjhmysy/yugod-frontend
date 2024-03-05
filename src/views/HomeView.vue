@@ -9,8 +9,6 @@ import vueIcon from '@/assets/images/vue_icon.svg'
 import dockerIcon from '@/assets/images/docker_icon.png'
 
 const { lang } = storeToRefs(useLangStore())
-const { setLangZh, setLangJa } = useLangStore()
-
 const icons = [vueIcon, goIcon, dockerIcon]
 
 const data = computed(() => {
@@ -20,23 +18,6 @@ const data = computed(() => {
 </script>
 
 <template>
-  <button
-    class="p-4 bg-gray-500"
-    @click="
-      () => {
-        if (lang === LOCALES.JA) {
-          setLangZh()
-          return
-        }
-        if (lang === LOCALES.ZH) {
-          setLangJa()
-          return
-        }
-      }
-    "
-  >
-    切换语言
-  </button>
   <h1>{{ data.header }}</h1>
   <a-card :title="data.main.title" class="border-2">
     <a-card

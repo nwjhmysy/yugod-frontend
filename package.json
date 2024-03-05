@@ -10,7 +10,8 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "generate-api":"docker-compose -f docker-compose.api.yml run --rm openapi-generator-cli"
   },
   "dependencies": {
     "@ant-design/icons-vue": "^7.0.1",

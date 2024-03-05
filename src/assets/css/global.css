@@ -20,3 +20,10 @@
   word-break: break-all;
   overflow-wrap: break-word;
 }
+/* 省略号 */
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 60px; /* 可以根据需要调整宽度 */
+}

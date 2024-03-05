@@ -8,5 +8,6 @@ configuration.ts
 git_push.sh
 index.ts
 model/common-response.ts
+model/get-mdby-path-response.ts
 model/index.ts
 model/response-status.ts

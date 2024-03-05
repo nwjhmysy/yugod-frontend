@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import type { NavItem } from '@/model/nav/type'
+
 interface Props {
+  navs: NavItem[]
   isOpen: boolean
 }
 interface Emit {
@@ -12,8 +15,14 @@ const emit = defineEmits<Emit>()
 <template>
   <Transition name="slide-fade">
     <div v-if="props.isOpen" class="w-full bg-gray-4 box-border z-[99] fixed top-16 cursor-pointer">
-      <div class="box-border px-4 p-3 nav" @click="() => emit('move-to', '')">home</div>
-      <div class="box-border px-4 p-3 nav" @click="() => emit('move-to', '/about')">markdown</div>
+      <div
+        v-for="nav in props.navs"
+        :key="nav.id"
+        class="box-border px-4 p-3 nav"
+        @click="() => emit('move-to', nav.navLink)"
+      >
+        {{ nav.navName }}
+      </div>
     </div>
   </Transition>
 </template>
@@ -33,6 +42,6 @@ const emit = defineEmits<Emit>()
   opacity: 0;
 }
 .nav:active {
-  background-color: #8bcc7b;
+  background-color: #b7b7b7;
 }
 </style>
