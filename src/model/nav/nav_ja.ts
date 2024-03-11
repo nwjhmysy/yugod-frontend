@@ -9,7 +9,7 @@ export const nav_ja: NavItem[] = [
   {
     id: 2,
     navName: 'ノート',
-    navLink: '/about/ssh_config'
+    navLink: '/study/ssh_config'
   },
   {
     id: 3,

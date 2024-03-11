@@ -23,8 +23,8 @@ const routes = [
     component: HomeView
   },
   {
-    path: 'about/:mdPath?',
-    name: 'about',
+    path: 'study/:mdPath?',
+    name: 'study',
     component: StudyNoteView
   },
   {

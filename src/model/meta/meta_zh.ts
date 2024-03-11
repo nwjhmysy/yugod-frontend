@@ -6,11 +6,11 @@ export const meta_zh: Record<string, MetaCommon> = {
     description: '分享技术知识 ｜ 生活瞬间'
   },
   home: {
-    title: '欢迎 - 分享乐园',
+    title: '欢迎 - 学习笔记',
     description: '分享技术知识 ｜ 生活瞬间'
   },
   about: {
-    title: '详情 - 简单介绍',
+    title: '详情 - 分享园地',
     description: '分享技术知识 ｜ 生活瞬间'
   }
 }

@@ -6,6 +6,7 @@ import { useLangStore } from '@/stores/lang'
 import { storeToRefs } from 'pinia'
 import { LOCALES } from '@/constants'
 import { SwapOutlined } from '@ant-design/icons-vue'
+import Footer from '@/components/footer/Footer.vue'
 
 const { isSP } = useIsSP(700)
 const { lang } = storeToRefs(useLangStore())
@@ -60,9 +61,7 @@ const { setLangZh, setLangJa } = useLangStore()
       </div>
     </div>
     <!-- footer -->
-    <div class="w-full bg-black box-border px-14 py-4">
-      <span class="text-white">foot</span>
-    </div>
+    <Footer />
   </div>
 </template>
 
