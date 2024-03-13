@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<Props>(), { class: '' })
 const { lang } = storeToRefs(useLangStore())
 let data = reactive(cata[lang.value])
 const { fileSelected } = storeToRefs(useCatalogueStore())
-const { setFileSelected,clickUnit,isUnitOpen } = useCatalogueStore()
+const { setFileSelected, clickUnit, isUnitOpen } = useCatalogueStore()
 const emit = defineEmits<Emits>()
 const dataTitle = computed(() => title[lang.value])
 

@@ -1,5 +1,5 @@
-import { defineStore } from "pinia";
-import { reactive } from "vue";
+import { defineStore } from 'pinia'
+import { reactive } from 'vue'
 
 export const useCatalogueStore = defineStore('catalogue', () => {
   const fileSelected = reactive({
@@ -9,7 +9,7 @@ export const useCatalogueStore = defineStore('catalogue', () => {
   const unitOpen = reactive<string[]>([])
 
   // 设置被选中的目录
-  const setFileSelected = (  unitID: string,fileID: string) => {
+  const setFileSelected = (unitID: string, fileID: string) => {
     fileSelected.unitID = unitID
     fileSelected.fileID = fileID
   }

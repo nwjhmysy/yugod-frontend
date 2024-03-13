@@ -3,9 +3,10 @@ import type { HomeContent } from './type'
 export const home_ja: HomeContent = {
   header: 'ようこそ👏👏～サイトは開発中です（配備済みです）～',
   main: {
-    title: 'プロジェクト学習です',
+    title: '「学習ノート」モジュールと開発完了です✅',
     list: ['「共有+学習」というウェブサイトです', 'UIデザイナーを招待します', 'qq:63436439']
   },
+  contentTitle: 'プロジェクト学習です',
   content: [
     {
       id: 1,
@@ -20,7 +21,7 @@ export const home_ja: HomeContent = {
     {
       id: 3,
       descript: 'DockerHubアドレスです：',
-      link: 'https://hub.docker.com/repository/docker/yinsiyu/frontend-vue3'
+      link: 'https://hub.docker.com/repositories/yinsiyu'
     }
   ]
 }

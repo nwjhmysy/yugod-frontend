@@ -10,6 +10,7 @@ import dockerIcon from '@/assets/images/docker_icon.png'
 import useIsSP from '@/hooks/useIsSP'
 
 const { lang } = storeToRefs(useLangStore())
+const { moveTo } = useLangStore()
 const icons = [vueIcon, goIcon, dockerIcon]
 const { isSP } = useIsSP(700)
 
@@ -17,7 +18,6 @@ const data = computed(() => {
   const key = lang?.value || LOCALES.ZH
   return HOME_VALUE[key]
 })
-
 </script>
 
 <template>
@@ -27,8 +27,14 @@ const data = computed(() => {
       isSP ? 'w-full max-w-[660px] px-8' : 'w-[660px] px-12'
     ]"
   >
-    <h1>{{ data.header }}</h1>
-    <a-card :title="data.main.title" class="border-2">
+    <h2>{{ data.header }}</h2>
+    <br />
+    <h2>{{ data.main.title }}</h2>
+    <br />
+    <a-button type="primary" class="bg-[#0077fa]" @click="moveTo('/study')">快去试试吧👉</a-button>
+    <br />
+    <br />
+    <a-card :title="data.contentTitle" class="border-2">
       <a-card
         v-for="(item, index) in data.content"
         :title="item.descript"

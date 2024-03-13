@@ -4,6 +4,7 @@ export interface HomeContent {
     title: string
     list: string[]
   }
+  contentTitle: string
   content: {
     id: number
     descript: string
