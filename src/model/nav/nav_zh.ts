@@ -9,7 +9,7 @@ export const nav_zh: NavItem[] = [
   {
     id: 2,
     navName: '学习笔记',
-    navLink: '/study/ssh_config'
+    navLink: '/study'
   },
   {
     id: 3,

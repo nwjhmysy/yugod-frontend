@@ -51,12 +51,7 @@ const { setLangZh, setLangJa } = useLangStore()
       <BannerSP v-if="isSP" />
       <BannerPC v-else />
       <!-- view -->
-      <div
-        :class="[
-          ' box-border my-6 py-10 bg-white',
-          isSP ? 'w-full max-w-[660px] px-8' : 'w-[660px] px-12'
-        ]"
-      >
+      <div class="w-full flex justify-center">
         <router-view />
       </div>
     </div>
