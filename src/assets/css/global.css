@@ -25,5 +25,5 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  width: 60px; /* 可以根据需要调整宽度 */
+  width: 130px; /* 可以根据需要调整宽度 */
 }
