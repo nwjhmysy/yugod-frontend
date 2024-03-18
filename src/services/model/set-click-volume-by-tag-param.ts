@@ -14,6 +14,17 @@
 
 
 
-export * from './api/info-api';
-export * from './api/md-api';
+/**
+ * 
+ * @export
+ * @interface SetClickVolumeByTagParam
+ */
+export interface SetClickVolumeByTagParam {
+    /**
+     * 
+     * @type {string}
+     * @memberof SetClickVolumeByTagParam
+     */
+    'tag': string;
+}
 
