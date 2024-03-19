@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 import VditorPreview from 'vditor'
 import BlankContent from '@/components/atoms/BlankContent.vue'
 import { getMDApi } from '@/assets/ts/utils'
@@ -15,6 +15,7 @@ import { cata } from '@/model/catalogue'
 import { storeToRefs } from 'pinia'
 import { useLangStore } from '@/stores/lang'
 import { useCatalogueStore } from '@/stores/catalogue'
+import { setInfo } from '@/hooks/useInfo'
 
 // 获取路由参数
 const md = ref<string>('')
@@ -56,6 +57,9 @@ const getMdPage = async () => {
   }
 }
 watch(mdPath, getMdPage)
+onMounted(() => {
+  setInfo('Note')
+})
 </script>
 <template>
   <!-- 目录 -->

@@ -13,7 +13,7 @@ export const nav_ja: NavItem[] = [
   },
   {
     id: 3,
-    navName: '分かち合いの場です',
+    navName: '分かち合いの場',
     navLink: '/share'
   }
 ]

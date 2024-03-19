@@ -28,7 +28,7 @@ const routes = [
     component: StudyNoteView
   },
   {
-    path: 'Share',
+    path: 'share',
     name: 'share',
     component: ShareGardenView
   }

@@ -7,6 +7,7 @@ import { storeToRefs } from 'pinia'
 import { LOCALES } from '@/constants'
 import { SwapOutlined } from '@ant-design/icons-vue'
 import Footer from '@/components/footer/Footer.vue'
+import clickVolume from '../atoms/clickVolume.vue'
 
 const { isSP } = useIsSP(700)
 const { lang } = storeToRefs(useLangStore())
@@ -50,6 +51,7 @@ const { setLangZh, setLangJa } = useLangStore()
       <!-- banner -->
       <BannerSP v-if="isSP" />
       <BannerPC v-else />
+      <clickVolume />
       <!-- view -->
       <div class="w-full flex justify-center">
         <router-view />

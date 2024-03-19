@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { LOCALES } from '@/constants'
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import HOME_VALUE from '@/model/home'
 import { storeToRefs } from 'pinia'
 import { useLangStore } from '@/stores/lang'
@@ -8,6 +8,7 @@ import goIcon from '@/assets/images/go_icon.png'
 import vueIcon from '@/assets/images/vue_icon.svg'
 import dockerIcon from '@/assets/images/docker_icon.png'
 import useIsSP from '@/hooks/useIsSP'
+import { setInfo } from '@/hooks/useInfo'
 
 const { lang } = storeToRefs(useLangStore())
 const { moveTo } = useLangStore()
@@ -17,6 +18,10 @@ const { isSP } = useIsSP(700)
 const data = computed(() => {
   const key = lang?.value || LOCALES.ZH
   return HOME_VALUE[key]
+})
+
+onMounted(() => {
+  setInfo('Web')
 })
 </script>
 

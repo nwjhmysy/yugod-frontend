@@ -9,6 +9,7 @@ import AudioClose from '@/assets/images/audio/audio_close.svg'
 import AudioNext from '@/assets/images/audio/audio_next.svg'
 import MusicImg from '@/assets/images/audio/music_img.jpg'
 import LeftIcon from '@/assets/images/audio/left.svg'
+import useIsSP from '@/hooks/useIsSP'
 
 interface Music {
   name: string
@@ -44,7 +45,10 @@ const volume = ref(0.6)
 const isImgShow = ref(true)
 // 是否关闭播放器
 const isClose = ref(false)
+// 自动播放
+const isAutoPlay = ref(false)
 
+const { isSP } = useIsSP()
 const music = computed(() => {
   return musics[musicIndex.value]
 })
@@ -68,6 +72,7 @@ const onVolume = () => {
 }
 // 切换曲目
 const onSwitchMusic = () => {
+  isAutoPlay.value = true
   let index = musicIndex.value
   index++
   if (index >= 2) {
@@ -77,6 +82,9 @@ const onSwitchMusic = () => {
   isPlay.value = true
 }
 onMounted(() => {
+  if (isSP.value) {
+    isClose.value = true
+  }
   onVolume()
 })
 watch(volume, () => {
@@ -93,7 +101,7 @@ watch(volume, () => {
   isMtued.value = !(volume.value > 0)
 })
 watch(isClose, () => {
-  if (isClose) isImgShow.value = true
+  if (isClose.value) isImgShow.value = true
 })
 </script>
 
@@ -103,13 +111,14 @@ watch(isClose, () => {
     class="z-[999] fixed bottom-6 left-0 cursor-pointer"
     @click="() => (isClose = false)"
   >
+    <p class="text-xs text-slate-600">打开播放器</p>
     <img :src="LeftIcon" width="50px" alt="" />
   </div>
   <div
     v-else
     class="w-[220px] z-[999] rounded-e-[45px] bg-red-200 flex justify-between items-center fixed bottom-0 left-0"
   >
-    <div>
+    <div class="">
       <div class="flex justify-start space-x-2">
         <button class="p-1.5 rounded border-2 bg-white" @click="onMtued">
           <img :src="!isMtued ? AudioOpen : AudioClose" alt="" width="20px" />
@@ -122,7 +131,9 @@ watch(isClose, () => {
         </button>
       </div>
       <a-slider v-model:value="volume" :min="0" :max="1" :step="0.01" />
-      <div class="ellipsis">{{ music.name }}</div>
+      <div class="w-[124px] overflow-hidden">
+        <p class="text-sm whitespace-nowrap text-move">{{ music.name }}</p>
+      </div>
     </div>
     <div
       :class="[
@@ -148,12 +159,21 @@ watch(isClose, () => {
     </div>
   </div>
 
-  <audio ref="audioPlay" autoplay :src="music.source" @ended="onSwitchMusic" :hidden="true"></audio>
+  <audio
+    ref="audioPlay"
+    :autoplay="isAutoPlay"
+    :src="music.source"
+    @ended="onSwitchMusic"
+    :hidden="true"
+  ></audio>
 </template>
 
 <style scoped>
 .rotate-img {
   animation: rotate 3s infinite linear;
+}
+.text-move {
+  animation: text-move 5s infinite linear;
 }
 @keyframes rotate {
   from {
@@ -161,6 +181,14 @@ watch(isClose, () => {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+@keyframes text-move {
+  from {
+    transform: translateX(-70%);
+  }
+  to {
+    transform: translateX(70%);
   }
 }
 </style>

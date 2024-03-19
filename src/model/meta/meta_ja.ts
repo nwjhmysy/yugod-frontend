@@ -6,11 +6,11 @@ export const meta_ja: Record<string, MetaCommon> = {
     description: '分かち合いのノウハウ & 生活瞬间'
   },
   home: {
-    title: 'ようこそ - 学習ノートです',
+    title: 'ようこそ - 学習ノート',
     description: '分かち合いのノウハウ & 生活瞬间'
   },
-  about: {
-    title: '詳しくは - 分かち合いの場です',
+  study: {
+    title: '詳しくは - 分かち合いの場',
     description: '分かち合いのノウハウ & 生活瞬间'
   }
 }
