@@ -116,7 +116,7 @@ watch(isClose, () => {
   </div>
   <div
     v-else
-    class="w-[220px] z-[999] rounded-e-[45px] bg-red-200 flex justify-between items-center fixed bottom-0 left-0"
+    class="w-[220px] z-[999] rounded-e-[45px] bg-gray-100 flex justify-between items-center fixed bottom-0 left-0"
   >
     <div class="">
       <div class="flex justify-start space-x-2">

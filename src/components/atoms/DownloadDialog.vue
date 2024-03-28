@@ -6,6 +6,7 @@ import { basePath } from '@/assets/ts/utils'
 import type { AxiosError } from 'axios'
 import type { CommonResponse } from '@/services/model'
 import { DownloadOutlined } from '@ant-design/icons-vue'
+import { message } from 'ant-design-vue'
 
 interface Emits {
   (event: 'close'): void
@@ -77,7 +78,14 @@ const mdDownload = async (mdPath: string, code: number) => {
             :loading="isButtonLoading"
             @click="
               () => {
-                if (!downloadCode || !props.mdPath) return
+                if (!downloadCode) {
+                  message.warning('下载码为空！')
+                  return
+                }
+                if (!props.mdPath) {
+                  message.warning('未选择要下载的文件')
+                  return
+                }
                 mdDownload(props.mdPath, downloadCode)
               }
             "

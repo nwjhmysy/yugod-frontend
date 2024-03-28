@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import searchIcon from '@/assets/images/search_icon.svg'
 import rainLgog from '@/assets/images/rain_logo.svg'
 import { GithubOutlined } from '@ant-design/icons-vue'
 import { useLangStore } from '@/stores/lang'
@@ -7,10 +6,10 @@ import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { LOCALES } from '@/constants'
 import NAVS from '@/model/nav'
+import BaseSearch from '@/components/atoms/BaseSearch.vue'
 
 const { moveTo } = useLangStore()
 const { lang } = storeToRefs(useLangStore())
-
 const data = computed(() => {
   const key = lang?.value || LOCALES.ZH
   return NAVS[key]
@@ -21,7 +20,7 @@ const data = computed(() => {
     class="w-full h-20 bg-zinc-100 box-border px-8 shadow-down flex justify-between items-center"
   >
     <div class="w-full flex justify-start items-center">
-      <div class="flex justify-start items-center mr-3">
+      <div class="flex justify-start items-center mr-3 cursor-pointer" @click="moveTo('/')">
         <img :src="rainLgog" alt="" class="max-w-[60px] h-[60px] mr-2" />
         <span class="whitespace-nowrap text-lg font-bold">YuGod</span>
       </div>
@@ -37,16 +36,7 @@ const data = computed(() => {
       </div>
     </div>
     <div class="w-full flex justify-end items-center">
-      <div
-        class="w-full max-w-[500px] flex bg-white justify-end rounded-l-lg box-content border-search"
-      >
-        <div class="w-full p-2 box-content">
-          <input type="text" class="w-full h-7 border-none outline-none" />
-        </div>
-        <div class="min-w-[42px] bg-gray-200 py-2 cursor-pointer flex justify-center">
-          <img :src="searchIcon" alt="" class="w-8" />
-        </div>
-      </div>
+      <BaseSearch />
       <a
         href="https://github.com/nwjhmysy"
         target="_blank"

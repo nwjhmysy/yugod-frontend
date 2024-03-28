@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 
 export const useCatalogueStore = defineStore('catalogue', () => {
   const fileSelected = reactive({
     unitID: '',
     fileID: ''
   })
+  const mdPathStore = ref('')
   const unitOpen = reactive<string[]>([])
-
   // 设置被选中的目录
   const setFileSelected = (unitID: string, fileID: string) => {
     fileSelected.unitID = unitID
@@ -30,10 +30,16 @@ export const useCatalogueStore = defineStore('catalogue', () => {
     return unitOpen.findIndex((item) => item === unitID) >= 0
   }
 
+  // 设置md文件的路径
+  const setMdPathStore = (path: string) => {
+    mdPathStore.value = path
+  }
   return {
     fileSelected,
+    mdPathStore,
     setFileSelected,
     clickUnit,
-    isUnitOpen
+    isUnitOpen,
+    setMdPathStore
   }
 })

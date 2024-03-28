@@ -29,8 +29,8 @@ const data = computed(() => {
         }
       "
     />
-    <div><span class="whitespace-nowrap text-lg font-bold">YuGod</span></div>
-    <div>搜索</div>
+    <div @click="moveTo('/')"><span class="whitespace-nowrap text-lg font-bold">YuGod</span></div>
+    <div class="cursor-pointer" @click="moveTo('/search')">搜索</div>
   </div>
   <BannerNav
     :navs="data"

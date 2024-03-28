@@ -21,8 +21,9 @@ import { setInfo } from '@/hooks/useInfo'
 const md = ref<string>('')
 const mdElement = ref<HTMLDivElement>()
 const { openLoading, closeLoading } = useLoadingStore()
+const { mdPathStore } = storeToRefs(useCatalogueStore())
+const { setMdPathStore } = useCatalogueStore()
 const { isSP } = useIsSP(700)
-const mdPath = ref('')
 const isDialogOpen = ref(false)
 const isSidebar = ref(false)
 const { lang } = storeToRefs(useLangStore())
@@ -35,16 +36,14 @@ const closeSidebar = () => (isSidebar.value = false)
 watch(isSP, closeSidebar)
 
 const getMdPage = async () => {
-  if (!mdPath.value) return
+  if (!mdPathStore.value) return
   try {
     const api = getMDApi()
     openLoading()
-
     // 获取加密后的 markdown 文本
     const {
       data: { data }
-    } = await api.getMarkDownByPath(mdPath.value)
-
+    } = await api.getMarkDownByPath(mdPathStore.value)
     // 解码
     const result = mdBase64Decode(data)
     md.value = result
@@ -56,9 +55,10 @@ const getMdPage = async () => {
     isSidebar.value = false
   }
 }
-watch(mdPath, getMdPage)
+watch(mdPathStore, getMdPage)
 onMounted(() => {
   setInfo('Note')
+  mdPathStore.value && getMdPage()
 })
 </script>
 <template>
@@ -92,7 +92,7 @@ onMounted(() => {
   <!-- 内容 -->
   <div class="w-full p-6 flex justify-center items-start space-x-10">
     <div
-      v-if="mdPath"
+      v-if="mdPathStore"
       ref="mdElement"
       :class="[
         'vditor-reset box-border py-10 bg-white',
@@ -115,7 +115,7 @@ onMounted(() => {
             :key="file.id"
             @click="
               () => {
-                mdPath = unit.path + '/' + file.path
+                setMdPathStore(unit.path + '/' + file.path)
                 setFileSelected(unit.id, file.id)
                 clickUnit(unit.id)
               }
@@ -134,7 +134,7 @@ onMounted(() => {
         class="shadow-md p-4 max-h-[420px] overflow-y-auto"
         @click-file="
           (path) => {
-            mdPath = path
+            setMdPathStore(path)
           }
         "
       />
@@ -153,13 +153,17 @@ onMounted(() => {
       <CataLogue
         @click-file="
           (path) => {
-            mdPath = path
+            mdPathStore = path
           }
         "
       />
     </a-drawer>
   </div>
-  <DownloadDialog :is-open="isDialogOpen" :md-path="mdPath" @close="() => (isDialogOpen = false)" />
+  <DownloadDialog
+    :is-open="isDialogOpen"
+    :md-path="mdPathStore"
+    @close="() => (isDialogOpen = false)"
+  />
 </template>
 
 <style scoped></style>
