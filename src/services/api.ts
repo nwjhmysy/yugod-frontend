@@ -16,4 +16,5 @@
 
 export * from './api/info-api';
 export * from './api/md-api';
+export * from './api/user-api';
 

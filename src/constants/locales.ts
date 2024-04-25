@@ -3,3 +3,7 @@ export enum LOCALES {
   JA = 'ja'
 }
 export const DefaultLang = LOCALES.ZH
+
+export enum STORAGE {
+  ACCESS_TOKEN = 'access_token'
+}

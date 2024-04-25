@@ -7,7 +7,9 @@ const HomeView = () => import('@/views/HomeView.vue')
 const StudyNoteView = () => import('@/views/StudyNoteView.vue')
 const BaseLayoutVue = () => import('@/components/layout/BaseLayout.vue')
 const ShareGardenView = () => import('@/views/ShareGardenView.vue')
-const searchedMdView = () => import('@/views/SearchMdView.vue')
+const SearchedMdView = () => import('@/views/SearchMdView.vue')
+const SignInView = () => import('@/views/SignIn.vue')
+const SignUpView = () => import('@/views/SignUp.vue')
 const getMeta = (route: RouteLocationNormalizedLoaded) => {
   const lang = (route.params.lang as LOCALES) || LOCALES.ZH
   const meta = META_VALUE[lang]
@@ -35,7 +37,17 @@ const routes = [
   {
     path: 'search',
     name: 'search',
-    component: searchedMdView
+    component: SearchedMdView
+  },
+  {
+    path: 'sign_in',
+    name: 'sign_in',
+    component: SignInView
+  },
+  {
+    path: 'sign_up',
+    name: 'sign_up',
+    component: SignUpView
   }
 ]
 
