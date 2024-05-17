@@ -1,4 +1,4 @@
-import { Configuration, InfoApi, MdApi, UserApi } from '@/services'
+import { Configuration, InfoApi, LoginApi, MdApi, UserApi } from '@/services'
 import { getTokenStorage } from '@/utils/storage'
 
 export const basePath = import.meta.env.VITE_API_BATH_PATH
@@ -18,4 +18,7 @@ export const getInfoApi = (token?: string) => {
 }
 export const getUserApi = (token?: string) => {
   return new UserApi(getConfiguration(token), basePath)
+}
+export const loginApi = (token?: string) => {
+  return new LoginApi(getConfiguration(token), basePath)
 }

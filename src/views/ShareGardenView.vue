@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { getUserApi } from '@/assets/ts/utils'
 import type { GetUserInfoData } from '@/services'
+import { useLoginStore } from '@/stores/login'
 import { ref } from 'vue'
 
 const userInfo = ref<GetUserInfoData>()
-
+const { onClearToken } = useLoginStore()
 const getUserInfo = async () => {
   try {
     const userApi = getUserApi()
@@ -13,7 +14,7 @@ const getUserInfo = async () => {
     } = await userApi.getUserInfo()
     userInfo.value = data
   } catch (error) {
-    console.log(error)
+    onClearToken()
   }
 }
 </script>

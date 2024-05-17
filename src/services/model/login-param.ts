@@ -14,8 +14,23 @@
 
 
 
-export * from './api/info-api';
-export * from './api/login-api';
-export * from './api/md-api';
-export * from './api/user-api';
+/**
+ * 
+ * @export
+ * @interface LoginParam
+ */
+export interface LoginParam {
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginParam
+     */
+    'user_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LoginParam
+     */
+    'password': string;
+}
 

@@ -2,6 +2,7 @@
 .npmignore
 api.ts
 api/info-api.ts
+api/login-api.ts
 api/md-api.ts
 api/user-api.ts
 base.ts
@@ -17,5 +18,6 @@ model/get-mdby-path-response.ts
 model/get-user-info-data.ts
 model/get-user-info-response.ts
 model/index.ts
+model/login-param.ts
 model/response-status.ts
 model/set-click-volume-by-tag-param.ts

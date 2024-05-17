@@ -5,5 +5,6 @@ export * from './get-click-volume-response';
 export * from './get-mdby-path-response';
 export * from './get-user-info-data';
 export * from './get-user-info-response';
+export * from './login-param';
 export * from './response-status';
 export * from './set-click-volume-by-tag-param';

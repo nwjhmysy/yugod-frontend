@@ -10,6 +10,7 @@ const ShareGardenView = () => import('@/views/ShareGardenView.vue')
 const SearchedMdView = () => import('@/views/SearchMdView.vue')
 const SignInView = () => import('@/views/SignIn.vue')
 const SignUpView = () => import('@/views/SignUp.vue')
+const UserCenterView = () => import('@/views/UserCenter.vue')
 const getMeta = (route: RouteLocationNormalizedLoaded) => {
   const lang = (route.params.lang as LOCALES) || LOCALES.ZH
   const meta = META_VALUE[lang]
@@ -48,6 +49,11 @@ const routes = [
     path: 'sign_up',
     name: 'sign_up',
     component: SignUpView
+  },
+  {
+    path: 'user',
+    name: 'user',
+    component: UserCenterView
   }
 ]
 
